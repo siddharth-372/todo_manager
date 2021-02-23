@@ -1,0 +1,79 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Todo-Manager-App</title>
+
+  <%= stylesheet_link_tag "test" %>
+
+
+</head>
+
+<body>
+  <h1>
+    My Todo-list
+  </h1>
+  <article>
+  <div>
+    <%= form_with model: @todo do |form| %>
+    <%= form.text_field :todo_text %>
+    <%= form.date_field :due_date %>
+    <%= form.submit "create" %>
+    <% end %>
+
+  <div>
+  <section>
+      <h3>OverDue</h3>
+      <ul>
+        <%arr = @todos.filter { |todo| todo.overdue }%>
+        <% arr.each do |value|%>
+           <li><%= value.to_string%>
+           <%= form_with(url: "/todos/#{value.id}", method: "put") do %>
+               <input type = "checkbox"
+               name = "completed"
+               <%= value.completed ? "checked" : ""%>
+               onclick="this.form.submit()"/>
+           <%end%>
+           <%= link_to "Delete", value, :method => :delete%></li>
+        <%end%>
+      </ul>
+    </section>
+    <section>
+      <h3>Due Today</h3>
+      <ul>
+      <%arr = @todos.filter { |todo| todo.due_today }%>
+        <% arr.each do |value|%>
+           <li><%= value.to_string%>
+           <%= form_with(url: "/todos/#{value.id}", method: "put") do %>
+               <input type = "checkbox"
+               name = "completed"
+               <%= value.completed ? "checked" : ""%>
+               onclick="this.form.submit()"/>
+           <%end%>
+           <%= link_to "Delete", value, :method => :delete%></li>
+        <%end%>
+      </ul>
+    </section>
+    <section>
+      <h3>Due Later</h3>
+      <ul>
+      <%arr = @todos.filter { |todo| todo.due_later}%>
+        <% arr.each do |value|%>
+           <li><%= value.to_string%>
+           <%= form_with(url: "/todos/#{value.id}", method: "put") do %>
+               <input type = "checkbox"
+               name = "completed"
+               <%= value.completed ? "checked" : ""%>
+               onclick="this.form.submit()"/>
+           <%end%>
+           <%= link_to "Delete", value, :method => :delete%></li>
+        <%end%>
+      </ul>
+    </section>
+  </article>
+</body>
+</html>

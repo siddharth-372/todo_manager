@@ -1,0 +1,5 @@
+<%= form_with model: @todo do |form| %>
+  <%= form.text_field :todo_text %>
+  <%= form.date_field :due_date %>
+  <%= form.submit "create" %>
+<% end %>

@@ -1,0 +1,6 @@
+<%= form_with model: @todo do |form| %>
+  <%= form.text_field :todo_text %><br>
+  <%= form.check_box :completed %><br>
+  <%= form.submit "update" %><br>
+  <%= link_to "Delete", @todo, :method => :delete%>
+<% end %>
