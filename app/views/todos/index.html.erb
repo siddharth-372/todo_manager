@@ -18,14 +18,17 @@
     My Todo-list
   </h1>
   <article>
-  <div>
-    <%= form_with model: @todo do |form| %>
-    <%= form.text_field :todo_text %>
-    <%= form.date_field :due_date %>
-    <%= form.submit "create" %>
-    <% end %>
 
   <div>
+    <%= form_with model: @todo do |form| %>
+    <label for="todo_text">Do you have any task?</label>
+    <%= form.text_field :todo_text %><br><br>
+    <label for="due_date">When it has to be done?</label>
+    <%=form.date_field :due_date %><br><br>
+    <%= form.submit "Add The task!" %>
+    <% end %>
+  <div>
+
   <section>
       <h3>OverDue</h3>
       <ul>
@@ -42,6 +45,7 @@
         <%end%>
       </ul>
     </section>
+
     <section>
       <h3>Due Today</h3>
       <ul>
@@ -58,6 +62,7 @@
         <%end%>
       </ul>
     </section>
+
     <section>
       <h3>Due Later</h3>
       <ul>
@@ -74,6 +79,8 @@
         <%end%>
       </ul>
     </section>
+
+
   </article>
 </body>
 </html>

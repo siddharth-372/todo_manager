@@ -11,6 +11,12 @@
   </head>
 
   <body>
+    <% if @current_user%>
+      <p> Welcome <%= @current_user.first_name%>
+      <%= link_to "Sign out", session_path(@current_user.id),  :method => :delete%>
+      </p>
+      <%end%>
+    <%= flash[:error]%>
     <%= yield %>
   </body>
 </html>

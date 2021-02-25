@@ -1,4 +1,6 @@
 class Todo < ActiveRecord::Base
+  belongs_to :user
+
   def due_today
     due_date == Date.today
   end
@@ -13,6 +15,6 @@ class Todo < ActiveRecord::Base
 
   def to_string
     is_completed = completed ? "[X]" : "[]"
-    "#{due_date} #{todo_text} #{is_completed}"
+    "#{due_date} #{todo_text}"
   end
 end
